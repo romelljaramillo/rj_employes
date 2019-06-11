@@ -99,8 +99,11 @@ class Rj_Employes extends Module implements WidgetInterface
                 $this->installSamples();
             }
 
-            // Disable on mobiles and tablets
-            $this->disableDevice(Context::DEVICE_MOBILE);
+            $this->installTab('AdminParentTabRjEmploye', 'RJ Empleados'); 
+            $this->installTab('AdminRjEmploye', 'Datos extras', 'AdminParentCustomer');
+            $this->installTab('AdminRjCoordinador', 'Coordinadores', 'AdminParentCustomer');
+            $this->installTab('AdminRjModule', 'Configuración', 'AdminParentCustomer');
+
 
             return (bool)$res;
         }
@@ -108,4 +111,93 @@ class Rj_Employes extends Module implements WidgetInterface
         return false;
     }
 
+    public function installTab($className, $tabName, $tabParentName = false)
+    {
+        $tab = new Tab();
+        $tab->active = 1;
+        $tab->class_name = $className;
+        $tab->name = array();
+        foreach (Language::getLanguages(true) as $lang) {
+            $tab->name[$lang['id_lang']] = $tabName;
+        }
+        if ($tabParentName) {
+            $tab->id_parent = (int)Tab::getIdFromClassName($tabParentName);
+        } else {
+            $tab->id_parent = 0;
+        }
+        
+        $tab->module = $this->name;
+        return $tab->add();
+    }
+
+
+
+    /**
+     * Creates tables
+     */
+    protected function createTables()
+    {
+        // Install SQL
+        $sql = array();
+        include dirname(__FILE__) . '/sql/sql-install.php';
+        foreach ($sql as $s) {
+            if (!Db::getInstance()->Execute($s)) {
+                return false;
+            }
+        }
+        include dirname(__FILE__) . '/sql/seeder.php';
+        foreach ($sqlseeder as $s) {
+            if (!Db::getInstance()->Execute($s)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+     /**
+     * deletes tables
+     */
+    protected function deleteTables()
+    {
+        return Db::getInstance()->execute('
+            DROP TABLE IF EXISTS 
+                `'._DB_PREFIX_.'rj_employe`,
+                `'._DB_PREFIX_.'rj_employe_shop`,
+                `'._DB_PREFIX_.'rj_coordinador`,
+                `'._DB_PREFIX_.'rj_coordinador_shop`,
+                `'._DB_PREFIX_.'rj_nacionalidad`;              
+        ');
+    }
+
+    /**
+    * @see Module::uninstall()
+    */
+    public function uninstall()
+    {
+        /* Deletes Module */
+        if (parent::uninstall()) {
+            /* Deletes tables */
+            $res = $this->deleteTables();
+            /* Unsets configuration */
+            $res &= Configuration::deleteByName('RJ_EMPLOYES_VERSION');
+            /* Uninstall admin tabs */
+            $res &= $this->uninstallTab('AdminParentTabRjEmploye');
+            $res &= $this->uninstallTab('AdminRjEmploye');
+            $res &= $this->uninstallTab('AdminRjCoordinador');
+            $res &= $this->uninstallTab('AdminRjModule');
+             return (bool)$res;
+        }
+        return false;
+    }
+
+    public function uninstallTab($tabName = '')
+    {
+        //$tab_class = Tools::ucfirst($this->name) . Tools::ucfirst($class_sfx);
+        $id_tab    = Tab::getIdFromClassName($tabName);
+        if ($id_tab != 0) {
+            $tab = new Tab($id_tab);
+            $tab->delete();
+            return true;
+        }
+    }
 }
