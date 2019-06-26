@@ -23,44 +23,44 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
-class Empleado extends ObjectModel
+class InfoEmpleado extends ObjectModel
 {	
 	public $id_customer;
-	public $seguridad_social;
 	public $id_nacionalidad;
+	public $id_coordinador;
+	public $id_estudios;
+	public $id_poblacion;
+	public $seguridad_social;
 	public $discapacidad;
 	public $porcentaje_discapacidad;
 	public $iban;
-	public $id_coordinador;
-	public $id_estudios;
-	public $id_cod_poblacion;
     public $date_add;
     public $date_upd;
 	/**
 	 * @see ObjectModel::$definition
 	 */
 	public static $definition = array(
-		'table' => 'serv_empleado',
-		'primary' => 'id_empleado',
+		'table' => 'rj_infoemploye',
+		'primary' => 'id_infoemploye',
 		'multishop' => true,		
 		'fields' => array(
 			// Lang fields
 			'id_customer' => array('type' => self::TYPE_INT, 'validate' => 'isNullOrUnsignedId', 'copy_post' => false),
-			'seguridad_social' => array('type' => self::TYPE_STRING, 'validate' => 'isGenericName', 'size' => 15),
             'id_nacionalidad' => array('type' => self::TYPE_INT, 'validate' => 'isNullOrUnsignedId', 'copy_post' => false),
+            'id_coordinador' => array('type' => self::TYPE_INT, 'validate' => 'isNullOrUnsignedId', 'copy_post' => false),
+            'id_estudios' => array('type' => self::TYPE_INT, 'validate' => 'isNullOrUnsignedId', 'copy_post' => false),
+            'id_poblacion' => array('type' => self::TYPE_INT, 'validate' => 'isNullOrUnsignedId', 'copy_post' => false),
+			'seguridad_social' => array('type' => self::TYPE_STRING, 'validate' => 'isGenericName', 'size' => 15),
             'discapacidad' => array('type' => self::TYPE_BOOL, 'validate' => 'isBool', 'copy_post' => false),
             'porcentaje_discapacidad' => array('type' => self::TYPE_INT, 'validate' => 'isPercentage'),
             'iban' => array('type' => self::TYPE_STRING, 'validate' => 'isGenericName', 'size' => 32),
-            'id_coordinador' => array('type' => self::TYPE_INT, 'validate' => 'isNullOrUnsignedId', 'copy_post' => false),
-            'id_estudios' => array('type' => self::TYPE_INT, 'validate' => 'isNullOrUnsignedId', 'copy_post' => false),
-            'id_cod_poblacion' => array('type' => self::TYPE_INT, 'validate' => 'isNullOrUnsignedId', 'copy_post' => false),
             'date_add' => array('type' => self::TYPE_DATE, 'validate' => 'isDate', 'copy_post' => false),
             'date_upd' => array('type' => self::TYPE_DATE, 'validate' => 'isDate', 'copy_post' => false),		
 		),
 	);
-	public	function __construct($id_empleado = null, $id_shop = null)
+	public	function __construct($id_infoemploye = null, $id_shop = null)
 	{
-		Shop::addTableAssociation('serv_empleado', array('type' => 'shop'));
-       	 parent::__construct($id_empleado, $id_shop);
+		Shop::addTableAssociation('rj_infoemploye', array('type' => 'shop'));
+       	 parent::__construct($id_infoemploye, $id_shop);
 	}
 }

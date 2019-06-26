@@ -95,14 +95,11 @@ class Rj_Employes extends Module implements WidgetInterface
             $res &= $this->createTables();
 
             /* Adds samples */
-            if ($res) {
-                $this->installSamples();
-            }
-
-            $this->installTab('AdminParentTabRjEmploye', 'RJ Empleados'); 
-            $this->installTab('AdminRjEmploye', 'Datos extras', 'AdminParentCustomer');
-            $this->installTab('AdminRjCoordinador', 'Coordinadores', 'AdminParentCustomer');
-            $this->installTab('AdminRjModule', 'Configuración', 'AdminParentCustomer');
+            
+            //$this->installTab('AdminParentTabRjEmploye', 'RJ Empleados'); 
+            $this->installTab('AdminInfoEmploye', 'Information employe', 'AdminParentCustomer');
+            // $this->installTab('AdminRjCoordinador', 'Coordinadores', 'AdminParentCustomer');
+            // $this->installTab('AdminRjModule', 'Configuración', 'AdminParentCustomer');
 
 
             return (bool)$res;
@@ -117,6 +114,7 @@ class Rj_Employes extends Module implements WidgetInterface
         $tab->active = 1;
         $tab->class_name = $className;
         $tab->name = array();
+
         foreach (Language::getLanguages(true) as $lang) {
             $tab->name[$lang['id_lang']] = $tabName;
         }
@@ -130,9 +128,7 @@ class Rj_Employes extends Module implements WidgetInterface
         return $tab->add();
     }
 
-
-
-    /**
+     /**
      * Creates tables
      */
     protected function createTables()
@@ -161,8 +157,8 @@ class Rj_Employes extends Module implements WidgetInterface
     {
         return Db::getInstance()->execute('
             DROP TABLE IF EXISTS 
-                `'._DB_PREFIX_.'rj_employe`,
-                `'._DB_PREFIX_.'rj_employe_shop`,
+                `'._DB_PREFIX_.'rj_infoemploye`,
+                `'._DB_PREFIX_.'rj_infoemploye_shop`,
                 `'._DB_PREFIX_.'rj_coordinador`,
                 `'._DB_PREFIX_.'rj_coordinador_shop`,
                 `'._DB_PREFIX_.'rj_nacionalidad`;              
@@ -181,10 +177,10 @@ class Rj_Employes extends Module implements WidgetInterface
             /* Unsets configuration */
             $res &= Configuration::deleteByName('RJ_EMPLOYES_VERSION');
             /* Uninstall admin tabs */
-            $res &= $this->uninstallTab('AdminParentTabRjEmploye');
-            $res &= $this->uninstallTab('AdminRjEmploye');
-            $res &= $this->uninstallTab('AdminRjCoordinador');
-            $res &= $this->uninstallTab('AdminRjModule');
+            // $res &= $this->uninstallTab('AdminParentTabRjEmploye');
+            $res &= $this->uninstallTab('AdminInfoEmploye');
+            // $res &= $this->uninstallTab('AdminRjCoordinador');
+            // $res &= $this->uninstallTab('AdminRjModule');
              return (bool)$res;
         }
         return false;
@@ -200,4 +196,24 @@ class Rj_Employes extends Module implements WidgetInterface
             return true;
         }
     }
+
+
+    public function renderWidget($hookName = null, array $configuration = [])
+    {
+        if (!$this->isCached($this->templateFile, $this->getCacheId())) {
+            $this->smarty->assign($this->getWidgetVariables($hookName, $configuration));
+        }
+
+        return $this->fetch($this->templateFile, $this->getCacheId());
+    }
+
+    public function getWidgetVariables($hookName = null, array $configuration = [])
+    {
+        return [
+            'hola' => [
+                'mundo' => 'mundo'
+            ],
+        ];
+    }
+
 }

@@ -12,9 +12,9 @@
  */
 $sql = array();
 /* tablas tipos de turno*/
-$sql[] = 'DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'rj_employe`;';
-$sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'rj_employe`(
-          `id_employe` int(10) NOT NULL AUTO_INCREMENT,
+$sql[] = 'DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'rj_infoemploye`;';
+$sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'rj_infoemploye`(
+          `id_infoemploye` int(10) NOT NULL AUTO_INCREMENT,
           `id_customer` int(10) unsigned NOT NULL, 
           `id_nacionalidad` int(10) DEFAULT NULL,
           `id_coordinador` int(10) DEFAULT NULL,
@@ -26,18 +26,18 @@ $sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'rj_employe`(
           `iban` varchar(24) DEFAULT NULL,
           `date_add` datetime NOT NULL,
           `date_upd` datetime NOT NULL,
-          PRIMARY KEY (`id_employe`),
+          PRIMARY KEY (`id_infoemploye`),
           KEY `id_customer` (`id_customer`),
           KEY `id_coordinador` (`id_coordinador`),
           KEY `id_estudios` (`id_estudios`),
           KEY `id_poblacion` (`id_poblacion`)
         ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=UTF8;';
 
-$sql[] = 'DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'rj_employe_shop`;';
-$sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'rj_employe_shop`(
-          `id_employe` int(10) unsigned NOT NULL, 
+$sql[] = 'DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'rj_infoemploye_shop`;';
+$sql[] = 'CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'rj_infoemploye_shop`(
+          `id_infoemploye` int(10) unsigned NOT NULL, 
           `id_shop` int(10) unsigned NOT NULL,        
-          PRIMARY KEY (`id_employe`, `id_shop`)
+          PRIMARY KEY (`id_infoemploye`, `id_shop`)
         ) ENGINE=' . _MYSQL_ENGINE_ . ' DEFAULT CHARSET=UTF8;';
 
 $sql[] = 'DROP TABLE IF EXISTS `' . _DB_PREFIX_ . 'rj_coordinador`;';
