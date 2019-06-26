@@ -64,12 +64,12 @@ class AdminInfoEmployeController extends ModuleAdminController
             'discapacidad' => array(
                 'title' => $this->trans('Discapacidad', array(), 'Admin.InfoEmploye.Rj_employe')
             ),
-            // 'coordinador' => array(
-            //     'title' => $this->trans('Coordinador', array(), 'Admin.InfoEmploye.Rj_employe'),
-            //     'type' => 'select',
-            //     'list' => Coordinador::getCoordinador(),
-            //     'filter_key' => 'c!id_coordinador',
-            // ),
+            'coordinador' => array(
+                'title' => $this->trans('Coordinador', array(), 'Admin.InfoEmploye.Rj_employe'),
+                'type' => 'select',
+                'list' => Coordinador::getCoordinador(),
+                'filter_key' => 'c!id_coordinador',
+            ),
             'date_add' => array(
                 'title' => $this->trans('Start Time', array(), 'Admin.InfoEmploye.Rj_employe')
             ),

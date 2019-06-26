@@ -34,6 +34,9 @@ if (!defined('_PS_VERSION_')) {
 
 use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
+include_once(__DIR__ . '/classes/InfoEmploye.php');
+include_once(__DIR__ . '/classes/Coordinador.php');
+
 class Rj_Employes extends Module implements WidgetInterface
 {
     public function __construct()
@@ -98,7 +101,7 @@ class Rj_Employes extends Module implements WidgetInterface
             
             //$this->installTab('AdminParentTabRjEmploye', 'RJ Empleados'); 
             $this->installTab('AdminInfoEmploye', 'Information employe', 'AdminParentCustomer');
-            // $this->installTab('AdminRjCoordinador', 'Coordinadores', 'AdminParentCustomer');
+            $this->installTab('AdminCoordinador', 'Coordinadores', 'AdminParentCustomer');
             // $this->installTab('AdminRjModule', 'Configuración', 'AdminParentCustomer');
 
 
@@ -179,7 +182,7 @@ class Rj_Employes extends Module implements WidgetInterface
             /* Uninstall admin tabs */
             // $res &= $this->uninstallTab('AdminParentTabRjEmploye');
             $res &= $this->uninstallTab('AdminInfoEmploye');
-            // $res &= $this->uninstallTab('AdminRjCoordinador');
+            $res &= $this->uninstallTab('AdminCoordinador');
             // $res &= $this->uninstallTab('AdminRjModule');
              return (bool)$res;
         }
