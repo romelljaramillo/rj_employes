@@ -31,7 +31,7 @@
 if (!defined('_PS_VERSION_')) {
     exit;
 }
-//esto es una prueba
+
 use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
 include_once(__DIR__ . '/classes/InfoEmploye.php');

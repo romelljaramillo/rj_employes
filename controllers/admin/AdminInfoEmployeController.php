@@ -82,6 +82,7 @@ class AdminInfoEmployeController extends ModuleAdminController
             LEFT JOIN `' . _DB_PREFIX_ . 'rj_nacionalidad` cl ON (cl.`id_nacionalidad` = a.`id_nacionalidad`)
             LEFT JOIN `' . _DB_PREFIX_ . 'rj_coordinador` c ON (c.`id_coordinador` = a.`id_coordinador`)
             LEFT JOIN `' . _DB_PREFIX_ . 'customer` cu ON (c.id_customer = cu.id_customer)';
+            
         return parent::renderList();
     }
 
