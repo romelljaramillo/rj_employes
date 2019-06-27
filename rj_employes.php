@@ -31,7 +31,7 @@
 if (!defined('_PS_VERSION_')) {
     exit;
 }
-
+//esto es una prueba
 use PrestaShop\PrestaShop\Core\Module\WidgetInterface;
 
 include_once(__DIR__ . '/classes/InfoEmploye.php');
@@ -102,7 +102,7 @@ class Rj_Employes extends Module implements WidgetInterface
             //$this->installTab('AdminParentTabRjEmploye', 'RJ Empleados'); 
             $this->installTab('AdminInfoEmploye', 'Information employe', 'AdminParentCustomer');
             $this->installTab('AdminCoordinador', 'Coordinadores', 'AdminParentCustomer');
-            // $this->installTab('AdminRjModule', 'ConfiguraciÛn', 'AdminParentCustomer');
+            // $this->installTab('AdminRjModule', 'Configuraci√≥n', 'AdminParentCustomer');
 
 
             return (bool)$res;
