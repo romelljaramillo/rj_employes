@@ -37,8 +37,8 @@ class AdminInfoEmployeController extends ModuleAdminController
 
         $this->bulk_actions = array(
             'delete' => array(
-                'text' => $this->trans('Delete selected', array(), 'Admin.InfoEmploye.Rj_employe'),
-                'confirm' => $this->trans('Delete selected items?', array(), 'Admin.InfoEmploye.Rj_employe'),
+                'text' => $this->l('Delete selected'),
+                'confirm' => $this->l('Delete selected items?'),
                 'icon' => 'icon-trash'
             )
         );    
@@ -48,33 +48,33 @@ class AdminInfoEmployeController extends ModuleAdminController
     {
         $this->fields_list = array(
             'id_employe' => array(
-                'title' => $this->trans('ID', array(), 'Admin.InfoEmploye.Rj_employe'),
+                'title' => $this->l('ID'),
                 'align' => 'text-center',
                 'class' => 'fixed-width-xs'
             ),
             'seguridad_social' => array(
-                'title' => $this->trans('Seguridad social', array(), 'Admin.InfoEmploye.Rj_employe')
+                'title' => $this->l('Seguridad social')
             ),
             'nacionalidad' => array(
-                'title' => $this->trans('Nacionalidad', array(), 'Admin.InfoEmploye.Rj_employe'),
+                'title' => $this->l('Nacionalidad'),
                 'type' => 'select',
                 'list' => $this->getNacionalidad(),
                 'filter_key' => 'cl!id_nacionalidad',
             ),
             'discapacidad' => array(
-                'title' => $this->trans('Discapacidad', array(), 'Admin.InfoEmploye.Rj_employe')
+                'title' => $this->l('Discapacidad')
             ),
             'coordinador' => array(
-                'title' => $this->trans('Coordinador', array(), 'Admin.InfoEmploye.Rj_employe'),
+                'title' => $this->l('Coordinador'),
                 'type' => 'select',
                 'list' => Coordinador::getCoordinador(),
                 'filter_key' => 'c!id_coordinador',
             ),
             'date_add' => array(
-                'title' => $this->trans('Start Time', array(), 'Admin.InfoEmploye.Rj_employe')
+                'title' => $this->l('Start Time')
             ),
             'date_upd' => array(
-                'title' => $this->trans('End Time', array(), 'Admin.InfoEmploye.Rj_employe')
+                'title' => $this->l('End Time')
             )
         );
         $this->_select = 'cl.`nacionalidad` as nacionalidad, cu.`firstname` as coordinador';

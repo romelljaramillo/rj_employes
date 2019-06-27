@@ -38,8 +38,8 @@ class AdminCoordinadorController extends ModuleAdminController
         
         $this->bulk_actions = array(
             'delete' => array(
-                'text' => $this->trans('Delete selected', array(), 'Admin.Coordinador.Rj_employes'),
-                'confirm' => $this->trans('Delete selected items?', array(), 'Admin.Coordinador.Rj_employes'),
+                'text' => $this->l('Delete selected'),
+                'confirm' => $this->l('Delete selected items?'),
                 'icon' => 'icon-trash'
             )
         );
@@ -57,27 +57,27 @@ class AdminCoordinadorController extends ModuleAdminController
 
         $this->fields_list = array(
             'id_coordinador' => array(
-                'title' => $this->trans('ID', array(), 'Admin.Coordinador.Rj_employes'),
+                'title' => $this->l('ID'),
                 'align' => 'text-center',
                 'class' => 'fixed-width-xs'
             ),
             'firstname' => array(
-                'title' => $this->trans('Firstname', array(), 'Admin.Coordinador.Rj_employes'),
+                'title' => $this->l('Firstname'),
                 'type' => 'select',
                 'list' => $this->customers_firstname,
                 'filter_key' => 'cl!id_customer',
             ),
             'lastname' => array(
-                'title' => $this->trans('Lastname', array(), 'Admin.Coordinador.Rj_employes'),
+                'title' => $this->l('Lastname'),
                 'type' => 'select',
                 'list' => $this->customers_lastname,
                 'filter_key' => 'cl!id_customer',
             ),
             'date_add' => array(
-                'title' => $this->trans('Creation date', array(), 'Admin.Coordinador.Rj_employes')
+                'title' => $this->l('Creation date')
             ),
             'date_upd' => array(
-                'title' => $this->trans('Modification date', array(), 'Admin.Coordinador.Rj_employes')
+                'title' => $this->l('Modification date')
             )
         );
 
@@ -115,7 +115,7 @@ class AdminCoordinadorController extends ModuleAdminController
         if (empty($this->display)) {
             $this->page_header_toolbar_btn['new_coordinador'] = array(
                 'href' => self::$currentIndex.'&addrj_coordinador&token='.$this->token,
-                'desc' => $this->trans('Add new Coordinador', array(), 'Admin.Coordinador.Rj_employes'),
+                'desc' => $this->l('Add new Coordinador'),
                 'icon' => 'process-icon-new'
             );
         }
@@ -130,20 +130,20 @@ class AdminCoordinadorController extends ModuleAdminController
         }
         $this->fields_form = array(
             'legend' => array(
-                'title' => $this->trans('Coordinador', array(), 'Admin.Coordinador.Rj_employes'),
+                'title' => $this->l('Coordinador'),
                 'icon' => 'icon-time'
             ),
             'input' => array(
                  array(
                     'type' => 'select',
-                    'label' => $this->trans('Coordinador', array(), 'Admin.Coordinador.Rj_employes'),
+                    'label' => $this->l('Coordinador'),
                     'name' => 'id_customer',
                     'options' => array(
                         'query' => $this->customers_list,
                         'id' => 'id',
                         'name' => 'name',
                         'default' => array(
-                            'label' => $this->trans('Coordinador', array(), 'Admin.Coordinador.Rj_employes'),
+                            'label' => $this->l('Coordinador'),
                             'value' => 0,
                         ),
                     ),
@@ -155,12 +155,12 @@ class AdminCoordinadorController extends ModuleAdminController
         if (Shop::isFeatureActive()) {
             $this->fields_form['input'][] = array(
                 'type' => 'shop',
-                'label' => $this->trans('Shop association', array(), 'Admin.Global'),
+                'label' => $this->l('Shop association'),
                 'name' => 'checkBoxShopAsso',
             );
         } 
         $this->fields_form['submit'] = array(
-            'title' => $this->trans('Save', array(), 'Admin.Actions')
+            'title' => $this->l('Save')
         );
         return parent::renderForm();
     }

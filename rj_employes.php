@@ -51,8 +51,8 @@ class Rj_Employes extends Module implements WidgetInterface
 
         parent::__construct();
 
-        $this->displayName = $this->getTranslator()->trans('Roanja Employes', array(), 'Modules.RjEmployes.Admin');
-        $this->description = $this->getTranslator()->trans('Custom manager employes.', array(), 'Modules.RjEmployes.Admin');
+        $this->displayName = $this->l('Roanja Employes', array(), 'Modules.RjEmployes.Admin');
+        $this->description = $this->l('Custom manager employes.', array(), 'Modules.RjEmployes.Admin');
         $this->ps_versions_compliancy = array('min' => '1.7.4.0', 'max' => _PS_VERSION_);
 
         $this->templateFile = 'module:rj_employes/views/templates/hook/menuemployes.tpl';
