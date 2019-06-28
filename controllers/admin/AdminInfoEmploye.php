@@ -101,4 +101,23 @@ class AdminInfoEmployeController extends ModuleAdminController
         );
         return $nacionalidades;
     }
+
+    public function renderView()
+    {
+       
+        $customer = new Customer($this->object->id_customer);
+        //dump($customer);
+        $this->tpl_view_vars = array(
+            'customer' => $customer,
+            'coordinador' => $this->object
+        );
+        
+        dump($customer);
+
+        if (version_compare(_PS_VERSION_, '1.5.6.0', '>')) {
+            $this->base_tpl_view = 'view_employe.tpl';
+        }
+        
+        return parent::renderView();
+    }
 }

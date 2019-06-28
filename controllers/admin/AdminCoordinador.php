@@ -94,19 +94,20 @@ class AdminCoordinadorController extends ModuleAdminController
 
     public function renderView()
     {
-        // $this->context->smarty->assign(array(
-        //     'empleado' => $this->object,
-            
-        // ));
-        // return $this->setTemplate($this->module->template_dir . 'view.tpl');
-        // 
+       
+        $customer = new Customer($this->object->id_customer);
+        
         $this->tpl_view_vars = array(
-            'empleado' => $this->object
+            'customer' => $customer,
+            'coordinador' => $this->object
         );
-        // if (version_compare(_PS_VERSION_, '1.5.6.0', '>')) {
-            $this->base_tpl_view = 'view.tpl';
-        // }
-            // var_dump($this->base_tpl_view);
+        
+        //dump($customer);
+
+        if (version_compare(_PS_VERSION_, '1.5.6.0', '>')) {
+            $this->base_tpl_view = 'view_coordinador.tpl';
+        }
+        
         return parent::renderView();
     }
 
@@ -114,7 +115,7 @@ class AdminCoordinadorController extends ModuleAdminController
     {
         if (empty($this->display)) {
             $this->page_header_toolbar_btn['new_coordinador'] = array(
-                'href' => self::$currentIndex.'&addrj_coordinador&token='.$this->token,
+                'href' => self::$currentIndex.'&add'.$this->table.'&token='.$this->token,
                 'desc' => $this->l('Add new Coordinador'),
                 'icon' => 'process-icon-new'
             );
