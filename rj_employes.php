@@ -27,7 +27,7 @@
 /**
  * @since   1.0.0
  */
-
+// prueba github
 if (!defined('_PS_VERSION_')) {
     exit;
 }
